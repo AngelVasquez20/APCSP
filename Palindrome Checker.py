@@ -8,6 +8,7 @@ def palindrome():
     elif palindrome_word.replace(".", "") == palindrome_word.replace(".", "")[::-1]:
         print("This is a palindrome")
         return True
+    elif palindrome_word.replace("?", "") == palindrome_word.replace("?", "")
     else:
         print("This is not a palindrome")
         return False
