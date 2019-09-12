@@ -5,14 +5,22 @@ def sandwich():
     if sandq == "1":
         price += float(5.25)
         print("You ordered a chicken sandwich, that will be $%.2f" % price)
+        return False
 
     if sandq == "2":
         price += float(6.25)
         print("You ordered a beef sandwich, that will be $%.2f" % price)
+        return False
 
     if sandq == "3":
         price += float(5.75)
         print("You ordered a tofu sandwich, that will be $%.2f" % price)
+        return False
+
+    elif sandq is None:
+        raise KeyError
+    print("I didn't get that")
+    return sandwich()
 
 
 sandwich()
