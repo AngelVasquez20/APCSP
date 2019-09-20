@@ -13,7 +13,6 @@ def sandwich():
     if sandq == "3":
         price += float(5.75)
         print("You ordered a tofu sandwich, that will be $%.2f" % price)
-    return price
 
 
 sandwich()
@@ -54,7 +53,6 @@ def french_fries():
                 print("Your mega size will be $%.2f" % price)
             if mega_size == "no".lower():
                 print("Your small beverage will be $%.2f" % price)
-                return False
         if size == "Medium":
             price += 1.50
             print("Your total will be $%.2f" % price)
@@ -64,7 +62,9 @@ def french_fries():
             print("Your total will be $%.2f" % price)
     if order == "no":
         return False
-    if order is None:
+    if order is not None:
+        return True
+    if order is " ":
         raise KeyError
     print("I didn't get that")
     return french_fries()

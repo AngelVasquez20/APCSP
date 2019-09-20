@@ -18,11 +18,11 @@ def french_fries():
         if size == "Large":
             price += 2.00
             print("Your total will be $%.2f" % price)
-
     if order == "no":
         return False
-
-    if order is None:
+    if order is not None:
+        return False
+    if order is " ":
         raise KeyError
     print("I didn't get that")
     return french_fries()
