@@ -9,20 +9,21 @@ def french_fries():
             if mega_size == "yes".lower():
                 price += 2.00
                 print("Your mega size will be $%.2f" % price)
+                return False
             if mega_size == "no".lower():
                 print("Your small beverage will be $%.2f" % price)
-        if size == "Medium":
+                return False
+        if size == "medium".lower():
             price += 1.50
             print("Your total will be $%.2f" % price)
-
-        if size == "Large":
+            return False
+        if size == "large".lower():
             price += 2.00
             print("Your total will be $%.2f" % price)
+            return False
     if order == "no":
         return False
-    if order is not None:
-        return False
-    if order is " ":
+    if order is None:
         raise KeyError
     print("I didn't get that")
     return french_fries()
