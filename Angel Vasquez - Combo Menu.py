@@ -55,7 +55,7 @@ beverage()
 
 
 def french_fries():
-    
+
     french_fries_price = 0
     order = input("Would you like some french fries?")
     if order == "yes":
@@ -87,3 +87,5 @@ def french_fries():
 
 
 french_fries()
+
+
