@@ -1,9 +1,15 @@
-def ketchup():
-    price = 0.25
-    order = input("How many ketchup packets would you like")
-    if order >= str(1):
+def amount(a):
+    return float(a) * .25
 
-        print("Your total will be $%.2f" % price)
+
+def ketchup():
+    price = 0
+    ketchup_q = input("Would you like some ketchup?")
+    if ketchup_q == "yes":
+        count = int(input("How many packets would you like? "))
+        price = price + amount(count)
+    else:
+        print("The total cost is" + "" + str(price))
 
 
 ketchup()

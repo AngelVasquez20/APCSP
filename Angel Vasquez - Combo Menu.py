@@ -1,5 +1,6 @@
 price = 0
 
+
 def sandwich():
     sandq = input("What kind of sandwich would you like to buy? Enter 1 for chicken, Enter 2 for beef, "
                   "Enter 3 for tofu: ")
@@ -20,7 +21,6 @@ def sandwich():
         raise KeyError
     print("I didn't get that")
     return sandqprice
-
 
 
 sandwich()
@@ -55,9 +55,8 @@ beverage()
 
 
 def french_fries():
-
-    french_fries_price = 0
     order = input("Would you like some french fries?")
+    french_fries_price = 0
     if order == "yes":
         size = input("What size would you like?")
         if size == "small".lower():
@@ -85,7 +84,16 @@ def french_fries():
     print("I didn't get that")
     return french_fries_price
 
-
 french_fries()
 
 
+def ketchup():
+    packet_cost = 0
+    ketchup_q = input("Would you like some ketchup")
+    if ketchup_q == "yes":
+        ask = int(input("How many packets would you like"))
+
+price += sandwich()
+price += beverage()
+price += french_fries()
+price += ketchup()
