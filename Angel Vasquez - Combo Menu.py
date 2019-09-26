@@ -1,4 +1,4 @@
-price = 0
+total = 0
 
 
 def sandwich():
@@ -17,9 +17,6 @@ def sandwich():
         sandqprice += float(5.75)
         print("You ordered a tofu sandwich, that will be $%.2f" % sandqprice)
         return False
-    if sandq is None:
-        raise KeyError
-    print("I didn't get that")
     return sandqprice
 
 
@@ -34,6 +31,7 @@ def beverage():
         if size == "small".lower():
             beverageprice += 1.00
             print("Total will be %.2f" % beverageprice)
+            print("So far your total is %.2f" % beverageprice + str(total) + str(beverageprice))
             return False
         if size == "medium".lower():
             beverageprice += 1.75
@@ -84,6 +82,7 @@ def french_fries():
     print("I didn't get that")
     return french_fries_price
 
+
 french_fries()
 
 
@@ -92,8 +91,16 @@ def ketchup():
     ketchup_q = input("Would you like some ketchup")
     if ketchup_q == "yes":
         ask = int(input("How many packets would you like"))
+        if ask >= 1:
+            packet_cost += float(ask * 0.25)
+            print("Your total coast is %.2f" % packet_cost)
+        else:
+            return
+        if total > 7.25:
+            print("Your total is %.2f plus tax" % (total + (0.07 * (total - 1) + packet_cost)))
 
-price += sandwich()
-price += beverage()
-price += french_fries()
-price += ketchup()
+
+total += sandwich()
+total += beverage()
+total += french_fries()
+total += ketchup()
