@@ -65,3 +65,18 @@ check_equals(user_number, 5)
 
 print("IIIIIIIIIIIIIIIIIIIII")
 print("IIII"             "IIII")
+
+response = input("Enter something here: ")
+print(int(response)) #When does this break?
+
+#How can I make sure an input was an integer?
+user = input("Enter a number: ")
+try: #Try to see if this works
+    print(int(user))
+
+except ValueError: # if error, don't crash. Do this instead.
+    print("That's not an integer. ")
+else: #if no error occurs, do this
+    print("That was an integer. All good here.")
+    print("This line always happens.")
+

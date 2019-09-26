@@ -2,22 +2,25 @@ total = 0
 
 
 def sandwich():
-    sandq = input("What kind of sandwich would you like to buy? Enter 1 for chicken, Enter 2 for beef, "
-                  "Enter 3 for tofu: ")
+    sandq = input("Would you like a sandwich: ")
     sandqprice = 0
-    if sandq == "1":
-        sandqprice += float(5.25)
-        print("You ordered a chicken sandwich, that will be $%.2f" % sandqprice)
+    if sandq == "yes".lower():
+        ask = input("What kind of sandwich would you like 1 for chicken 2 for tofu 3 for beef:")
+        if ask == "1":
+            print("You ordered a Chicken sandwich")
+            sandqprice += float(5.25)
+        if ask == "2":
+            sandqprice += float(5.75)
+            print("You ordered a Tofu sandwich")
+        if ask == "3":
+            sandqprice += float(6.25)
+            print("You ordered a Beef sandwich")
+        return sandqprice
+    if sandq == "no".lower():
         return False
-    if sandq == "2":
-        sandqprice += float(6.25)
-        print("You ordered a beef sandwich, that will be $%.2f" % sandqprice)
-        return False
-    if sandq == "3":
-        sandqprice += float(5.75)
-        print("You ordered a tofu sandwich, that will be $%.2f" % sandqprice)
-        return False
-    return sandqprice
+    else:
+        print("I didn't get that")
+        return sandwich()
 
 
 sandwich()
@@ -29,24 +32,24 @@ def beverage():
     if question == "yes".lower():
         size = input("What kind of size would you want?: ").lower()
         if size == "small".lower():
-            beverageprice += 1.00
-            print("Total will be %.2f" % beverageprice)
-            print("So far your total is %.2f" % beverageprice + str(total) + str(beverageprice))
+            beverageprice += float(1.00)
+            print("You ordered a small beverage")
+            # print("Your total so far will be %.2f" % beverageprice)
             return False
         if size == "medium".lower():
-            beverageprice += 1.75
-            print("Total will be %.2f" % beverageprice)
+            beverageprice += float(1.75)
+            print("You ordered a medium beverage")
             return False
         if size == "large".lower():
-            beverageprice += 2.25
-            print("Total will be %.2f" % beverageprice)
+            beverageprice += float(2.25)
+            print("You ordered a large beverage")
             return False
         if question == "no".lower():
             return False
-        if question is None:
-            raise KeyError
-        print("I didn't get that")
         return beverageprice
+    else:
+        print("I didn't get that")
+        return beverage()
 
 
 beverage()
@@ -58,29 +61,29 @@ def french_fries():
     if order == "yes":
         size = input("What size would you like?")
         if size == "small".lower():
-            french_fries_price += 1.00
+            french_fries_price += float(1.00)
             mega_size = input("Would you like a mega size?")
             if mega_size == "yes".lower():
-                french_fries_price += 2.00
-                print("Your mega size will be $%.2f" % french_fries_price)
+                french_fries_price += float(2.00)
+                print("You  ordered mega fries")
                 return False
             if mega_size == "no".lower():
-                print("Your small beverage will be $%.2f" % french_fries_price)
+                print("You ordered small fries")
                 return False
         if size == "medium".lower():
-            french_fries_price += 1.50
-            print("Your total will be $%.2f" % french_fries_price)
+            french_fries_price += float(1.50)
+            print("You ordered medium fries")
             return False
         if size == "large".lower():
-            french_fries_price += 2.00
-            print("Your total will be $%.2f" % french_fries_price)
+            french_fries_price += float(2.00)
+            print("You ordered large fries")
             return False
-    if order == "no":
-        return False
-    if order is None:
-        raise KeyError
-    print("I didn't get that")
-    return french_fries_price
+        if order == "no":
+            return False
+        return french_fries_price
+    else:
+        print("I didn't get that")
+        return french_fries()
 
 
 french_fries()
@@ -98,9 +101,18 @@ def ketchup():
             return
         if total > 7.25:
             print("Your total is %.2f plus tax" % (total + (0.07 * (total - 1) + packet_cost)))
+            return
+
+        else:
+            print("Your total is %.2f plus tax" % (total + (0.07 * packet_cost)))
+            return
+
+
+ketchup()
 
 
 total += sandwich()
 total += beverage()
 total += french_fries()
 total += ketchup()
+print(total)
