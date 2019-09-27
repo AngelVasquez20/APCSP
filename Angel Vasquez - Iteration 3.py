@@ -1,32 +1,32 @@
 def french_fries():
-    price = 0
     order = input("Would you like some french fries?")
+    french_fries_price = 0
     if order == "yes":
         size = input("What size would you like?")
         if size == "small".lower():
-            price += 1.00
+            french_fries_price += float(1.00)
             mega_size = input("Would you like a mega size?")
             if mega_size == "yes".lower():
-                price += 2.00
-                print("Your mega size will be $%.2f" % price)
+                french_fries_price += float(2.00)
+                print("You  ordered mega fries")
                 return False
             if mega_size == "no".lower():
-                print("Your small beverage will be $%.2f" % price)
+                print("You ordered small fries")
                 return False
         if size == "medium".lower():
-            price += 1.50
-            print("Your total will be $%.2f" % price)
+            french_fries_price += float(1.50)
+            print("You ordered medium fries")
             return False
         if size == "large".lower():
-            price += 2.00
-            print("Your total will be $%.2f" % price)
+            french_fries_price += float(2.00)
+            print("You ordered large fries")
             return False
-    if order == "no":
-        return False
-    if order is None:
-        raise KeyError
-    print("I didn't get that")
-    return french_fries()
+        if order == "no":
+            return False
+        return french_fries_price
+    else:
+        print("I didn't get that")
+        return french_fries()
 
 
 french_fries()

@@ -1,11 +1,26 @@
 total = 0
 
+sandwich_list = ["Chicken", "Tofu", "Beef"]
+sizes = ["small", "medium", "large"]
+
 
 def sandwich():
     sandq = input("Would you like a sandwich: ")
+    try:
+        if sandq is None:
+            raise KeyError
+        print("Invalid Information")
+    except ValueError:
+        print("Invalid information")
     sandqprice = 0
     if sandq == "yes".lower():
         ask = input("What kind of sandwich would you like 1 for chicken 2 for tofu 3 for beef:")
+        try:
+            if ask is None:
+                raise KeyError
+            print("Invalid information")
+        except ValueError:
+            print("Invalid number")
         if ask == "1":
             print("You ordered a Chicken sandwich")
             sandqprice += float(5.25)
@@ -15,13 +30,10 @@ def sandwich():
         if ask == "3":
             sandqprice += float(6.25)
             print("You ordered a Beef sandwich")
+        else:
+            print("I didn't get that")
+            return sandwich()
         return sandqprice
-    if sandq == "no".lower():
-        return False
-    else:
-        print("I didn't get that")
-        return sandwich()
-
 
 sandwich()
 
@@ -109,6 +121,7 @@ def ketchup():
 
 
 ketchup()
+
 total += sandwich()
 total += beverage()
 total += french_fries()

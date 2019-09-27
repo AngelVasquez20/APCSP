@@ -1,20 +1,26 @@
 def beverage():
-    price = 0
+    beverageprice = 0
     question = input("Would you like a beverage?: ").lower()
     if question == "yes".lower():
         size = input("What kind of size would you want?: ").lower()
         if size == "small".lower():
-            price += 1.00
-            print("Total will be %.2f" % price)
-        if size == "Medium".lower():
-            price += 1.75
-            print("Total will be %.2f" % price)
-        if size == "Large".lower():
-            price += 2.25
-            print("Total will be %.2f" % price)
-
+            beverageprice += float(1.00)
+            print("You ordered a small beverage")
+            return False
+        if size == "medium".lower():
+            beverageprice += float(1.75)
+            print("You ordered a medium beverage")
+            return False
+        if size == "large".lower():
+            beverageprice += float(2.25)
+            print("You ordered a large beverage")
+            return False
         if question == "no".lower():
             return False
+        return beverageprice
+    else:
+        print("I didn't get that")
+        return beverage()
 
 
 beverage()
