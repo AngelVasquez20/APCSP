@@ -4,23 +4,11 @@ sandwich_list = ["Chicken", "Tofu", "Beef"]
 sizes = ["small", "medium", "large"]
 
 
-ef sandwich():
-    sandq = input("Would you like a sandwich: ")
-    try:
-        if sandq is None:
-            raise KeyError
-        print("Invalid Information")
-    except ValueError:
-        print("Invalid information")
+def sandwich():
+    sandq = input("Would you like a sandwich? ")
     sandqprice = 0
     if sandq == "yes".lower():
         ask = input("What kind of sandwich would you like 1 for chicken 2 for tofu 3 for beef:")
-        try:
-            if ask is None:
-                raise KeyError
-            print("Invalid information")
-        except ValueError:
-            print("Invalid number")
         if ask == "1":
             print("You ordered a Chicken sandwich")
             sandqprice += float(5.25)
@@ -30,6 +18,13 @@ ef sandwich():
         if ask == "3":
             sandqprice += float(6.25)
             print("You ordered a Beef sandwich")
+        return sandqprice
+    if sandq == "no".lower():
+        return False
+    while sandq is not "yes" or sandq is not "no":
+        print("I didn't get that")
+        sandq = input("Would you like a sandwich? ")
+
 
 sandwich()
 
@@ -37,20 +32,8 @@ sandwich()
 def beverage():
     beverageprice = 0
     question = input("Would you like a beverage?: ").lower()
-    try:
-        if question is None:
-            raise KeyError
-        print("Invalid information")
-    except ValueError:
-        print("Invalid Information")
     if question == "yes".lower():
         size = input("What kind of size would you want?: ").lower()
-        try:
-            if size is None:
-                raise KeyError
-            print("Invalid Information")
-        except ValueError:
-            print("Invalid Information")
         if size == "small".lower():
             beverageprice += float(1.00)
             print("You ordered a small beverage")
