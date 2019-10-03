@@ -5,6 +5,7 @@ sandwich_list = ["chicken", "tofu", "beef"]
 sizes = ["small", "medium", "large"]
 answers = []
 yes_cost = []
+orders = []
 
 
 def sandwich():
@@ -35,8 +36,8 @@ def sandwich():
                 answers.append(ask)
                 yes_cost.append(sandqprice)
         return sandqprice
-    while sand_question is not "yes" or sand_question is not "no":
-        sand_question = input("Invalid information. Would you like a sandwich (yes or no)")
+    # while sand_question is not "yes" or sand_question is not "no":
+    #     sand_question = input("Invalid information. Would you like a sandwich (yes or no)")
 
 
 sandwich()
@@ -44,21 +45,27 @@ sandwich()
 
 def beverage():
     beverageprice = 0
-    question = input("Would you like a beverage?: ").lower()
+    question = input("Would you like a beverage?(yes or no): ").lower()
+    if question == "no":
+        sys.exit(0)
     if question == "yes".lower():
-        size = input("What kind of size would you want?: ").lower()
-        if size == "small".lower():
-            beverageprice += float(1.00)
-            print("You ordered a small beverage")
-            return False
-        if size == "medium".lower():
-            beverageprice += float(1.75)
-            print("You ordered a medium beverage")
-        if size == "large".lower():
-            beverageprice += float(2.25)
-            print("You ordered a large beverage")
-        if question == "no".lower():
-            return False
+        size_q = input("What kind of size would you want?(small, medium, or large): ").lower()
+        if size_q in sizes:
+            if size_q == sizes[0]:
+                beverageprice += 1.00
+                print("You have ordered a small beverage")
+                answers.append(size_q)
+                yes_cost.append(size_q)
+            elif size_q == sizes[1]:
+                beverageprice += 1.75
+                print("You ordered a medium beverage")
+                answers.append(size_q)
+                yes_cost.append(size_q)
+            elif size_q == sizes[2]:
+                beverageprice += 2.25
+                print("You have ordered a large beverage")
+                answers.append(size_q)
+                yes_cost.append(size_q)
         return beverageprice
 
 
@@ -66,34 +73,28 @@ beverage()
 
 
 def french_fries():
-    order = input("Would you like some french fries?")
+    order = input("Would you like some french fries? (yes or no)")
     french_fries_price = 0
     if order == "yes":
-        size = input("What size would you like?")
-        if size == "small".lower():
-            french_fries_price += float(1.00)
-            mega_size = input("Would you like a mega size?")
-            if mega_size == "yes".lower():
-                french_fries_price += float(2.00)
-                print("You  ordered mega fries")
-                return False
-            if mega_size == "no".lower():
-                print("You ordered small fries")
-                return False
-        if size == "medium".lower():
-            french_fries_price += float(1.50)
-            print("You ordered medium fries")
-            return False
-        if size == "large".lower():
-            french_fries_price += float(2.00)
-            print("You ordered large fries")
-            return False
-        if order == "no":
-            return False
+        french_size = input("What size would you like?(small, medium, or large)")
+        if french_size in sizes:
+            if french_size == sizes[0]:
+                french_fries_price += 1.00
+                print("You have ordered small french fries")
+                answers.append(french_size)
+                yes_cost.append(french_size)
+
+            elif french_size == sizes[1]:
+                french_fries_price += 1.50
+                print("You have ordered medium french fries")
+                answers.append(french_size)
+                yes_cost.append(french_size)
+            elif french_size == sizes[2]:
+                french_fries_price += 2.00
+                print("You have ordered large french fries")
+                answers.append(french_size)
+                yes_cost.append(french_size)
         return french_fries_price
-    else:
-        print("I didn't get that")
-        return french_fries()
 
 
 french_fries()
@@ -101,7 +102,7 @@ french_fries()
 
 def ketchup():
     packet_cost = 0
-    ketchup_q = input("Would you like some ketchup")
+    ketchup_q = input("Would you like some ketchup(yes or no)")
     if ketchup_q == "yes":
         ask = int(input("How many packets would you like"))
         if ask >= 1:
@@ -118,7 +119,36 @@ def ketchup():
             print("Your total will be $%.2f" % packet_cost)
             return packet_cost
 
+
 ketchup()
+
+#
+# def receipt():
+#     for i in orders:
+#         print(i)
+#         print(total)
+
+
+
+def again(yes):
+    order_again = input("Would you like to order again")
+    while order_again == "yes" or order_again == "no":
+        if order_again == "no":
+            receipt()
+            sys.exit(0)
+        sandwich()
+        beverage()
+        french_fries()
+        ketchup()
+        orders.append(answers)
+        print(orders)
+        for i in answers:
+            answers.remove(i)
+        order_again = input("Would you like to order again")
+
+
+again()
+
 
 
 # total += sandwich()
