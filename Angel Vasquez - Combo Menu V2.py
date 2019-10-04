@@ -35,9 +35,10 @@ def sandwich():
                 print("You have ordered a Beef sandwich")
                 answers.append(ask)
                 yes_cost.append(sandqprice)
-        return sandqprice
-    # while sand_question is not "yes" or sand_question is not "no":
-    #     sand_question = input("Invalid information. Would you like a sandwich (yes or no)")
+            return sandqprice
+    while sand_question is not "yes" or sand_question is not "no":
+        sand_question.
+        break
 
 
 sandwich()
@@ -80,10 +81,14 @@ def french_fries():
         if french_size in sizes:
             if french_size == sizes[0]:
                 french_fries_price += 1.00
-                print("You have ordered small french fries")
+                mega_size = input("Would you like a mega size(yes or no)")
+                if mega_size == "yes":
+                    french_fries_price += 2.00
+                    print("You have ordered mega fries")
+                if mega_size == "no":
+                    print("You ordered small fries")
                 answers.append(french_size)
                 yes_cost.append(french_size)
-
             elif french_size == sizes[1]:
                 french_fries_price += 1.50
                 print("You have ordered medium french fries")
@@ -129,12 +134,11 @@ ketchup()
 #         print(total)
 
 
-
-def again(yes):
+def again():
     order_again = input("Would you like to order again")
     while order_again == "yes" or order_again == "no":
         if order_again == "no":
-            receipt()
+            # receipt()
             sys.exit(0)
         sandwich()
         beverage()
@@ -148,7 +152,6 @@ def again(yes):
 
 
 again()
-
 
 
 # total += sandwich()
