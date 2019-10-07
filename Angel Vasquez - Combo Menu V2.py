@@ -9,41 +9,44 @@ orders = []
 
 
 def sandwich():
-    sand_question = input("Would you like a sandwich (Type in yes or no)? ")
     sandqprice = 0
+    sand_question = input("Would you like a sandwich (Type in yes or no)? ")
+    if sand_question == "quit" or sand_question == "q":
+        sys.exit()
     if sand_question == "no":
         yes_cost.append(int(0))
-    if sand_question == "q":
-        sys.exit(0)
+        return
     if sand_question == "yes":
         ask = input("What kind of sandwich would you like chicken, tofu, or beef:").lower()
-        if ask in sandwich_list:
-            if ask == sandwich_list[0]:
-                sandqprice += 5.25
-                print("You ordered a Chicken sandwich")
-                answers.append(ask)
-                yes_cost.append(sandqprice)
-            elif ask == sandwich_list[1]:
-                sandqprice += 5.75
-                print("You ordered a Tofu sandwich")
-                answers.append(ask)
-                yes_cost.append(sandqprice)
-            elif ask == sandwich_list[2]:
-                sandqprice += 6.25
-                print("You have ordered a Beef sandwich")
-                answers.append(ask)
-                yes_cost.append(sandqprice)
-        return sandqprice
-    while sand_question is not "yes" or sand_question is not "no":
-        print("I didn't get that")
-        sand_question = input("Would you like a sandwich (Type in yes or no)? ")
+        while ask not in sandwich_list:
+            if ask == "quit" or ask == "q":
+                print("Thanks, bye")
+                sys.exit()
+            print("I din't get that. You can enter q or quit ro end this code")
+            ask = input("What kind of sandwich would you like chicken, tofu, or beef:").lower()
+        if ask == sandwich_list[0]:
+            sandqprice += 5.25
+            print("You ordered a Chicken sandwich")
+            answers.append(ask)
+            yes_cost.append(sandqprice)
+        elif ask == sandwich_list[1]:
+            sandqprice += 5.75
+            print("You ordered a Tofu sandwich")
+            answers.append(ask)
+            yes_cost.append(sandqprice)
+        elif ask == sandwich_list[2]:
+            sandqprice += 6.25
+            print("You have ordered a Beef sandwich")
+            answers.append(ask)
+            yes_cost.append(sandqprice)
+    return sandqprice
 
 
 def beverage():
     beverageprice = 0
     question = input("Would you like a beverage?(yes or no): ").lower()
     if question == "no":
-        sys.exit(0)
+        sys.exit()
     if question == "yes".lower():
         size_q = input("What kind of size would you want?(small, medium, or large): ").lower()
         if size_q in sizes:
@@ -95,29 +98,24 @@ def french_fries():
                     answers.append(french_size)
                     yes_cost.append(french_size)
             return french_fries_price
-    # while order is not "yes" or order is not "no":
-    #     print("I didn't get that")
-    #     order = input("would you like some french fries(yes, no)")
 
 
 def ketchup():
     packet_cost = 0
     ketchup_q = input("Would you like some ketchup(yes or no)")
+    if ketchup_q == "q":
+        sys.exit(0)
     if ketchup_q == "yes":
         ask = int(input("How many packets would you like"))
         if ask >= 1:
             packet_cost += float(ask * 0.25)
+        randomtot = ((yes_cost[0] + yes_cost[1] + yes_cost[2]) + packet_cost)
+        print(randomtot)
+        if len(answers) == 3:
+            print("Your total is $%.2f plus tax" % (randomtot + (0.07 * randomtot) - 1))
         else:
-            return packet_cost
-        if total > 7.25:
-            packet_cost += (0.07 * (total - 1) + packet_cost)
-            print("Your total will be $%.2f" % packet_cost)
-            return packet_cost
-
-        else:
-            packet_cost += (0.07 * (total + packet_cost))
-            print("Your total will be $%.2f" % packet_cost)
-            return packet_cost
+            print("Your total is $%.2f plus tax" % (randomtot + (0.07 * randomtot)))
+        return packet_cost
 
 
 def receipt():
@@ -128,16 +126,17 @@ def receipt():
 
 def again():
     order_again = input("Would you like to order")
+    yes = 0
     while order_again == "yes" or order_again == "no":
         if order_again == "no":
-            # receipt()
-            # sys.exit(0)
-            return
-        sandwich()
-        beverage()
-        french_fries()
-        ketchup()
-        print(total)
+            print(orders)
+            print("Your total for everything  is $%.2f" % yes)
+            sys.exit(0)
+        yes += sandwich()
+        yes += beverage()
+        yes += french_fries()
+        yes += ketchup()
+        print(yes)
         orders.append(answers)
         print(orders)
         for i in answers:
