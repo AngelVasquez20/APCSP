@@ -166,6 +166,11 @@ def again():
         beverage()
         french_fries()
         ketchup()
+<<<<<<< HEAD
+=======
+        orders.append(answers)
+        print(orders)
+>>>>>>> 9428cfbb900a27b8e05dfbb9d6cd6353a3207e81
         for i in answers:
             answers.remove(i)
         order_again = input("Would you like to order again")
