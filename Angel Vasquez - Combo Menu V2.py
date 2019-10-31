@@ -58,7 +58,8 @@ def beverage():
         print("I didn;t get that. If you don't want to order enter quit or q")
         question = input("Would you like a beverage?(yes or no): ")
     if question == "no":
-        sys.exit()
+        yes_cost.append(int(0))
+        return False
     if question == "yes".lower():
         size_q = input("What kind of size would you want?(small, medium, or large): ").lower()
         while size_q not in sizes:
